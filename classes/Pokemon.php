@@ -1,7 +1,5 @@
 <?php
 
-namespace classes;
-
 class Pokemon
 {
     protected $pokemonName;
@@ -88,10 +86,10 @@ class Pokemon
      * @return void
      */
     final function attackPokemon($attack, $targetPokemon) {
-
+  
         // the default value of damage will be set by the name of the attack that is used by the attacking pokemon.
-        $damage = $this->attacks[$attack];
-        
+        $damage = $attack->damage;
+
         // array_key_exists checks if the array contains a specific value.
         if ( array_key_exists($this->energyType, $targetPokemon->weaknesses) ) {
             
@@ -108,6 +106,7 @@ class Pokemon
         }
 
         // if the damage is below 0 the damage wouldn't be taken from targetPokemon.
+        // -= is current - $damage.
         if ($damage > 0) $targetPokemon->health -= $damage;
 
         // checks trough the boolean from isAlive() if the health is less then 0.

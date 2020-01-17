@@ -1,9 +1,5 @@
 <?php
 
-namespace classes;
-
-use classes\Pokemon;
-
 class Charmeleon extends Pokemon
 {
     /**
@@ -29,8 +25,8 @@ class Charmeleon extends Pokemon
                 'Electric' => 10
             ],
             'attacks' => [
-                'Head Butt' => 10,
-                'Flare' => 30
+                new HeadButt(),
+                new Flare()
             ]
         ];
 

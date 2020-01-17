@@ -1,8 +1,8 @@
 <?php
 
-include 'classes/Pokemon.php';
-include 'classes/Pikachu.php';
-include 'classes/Charmeleon.php';
+spl_autoload_register(function ($class) {
+    include 'classes/' . $class . '.php';
+});
 
 /**
  * echoStatusPokemons
@@ -27,19 +27,27 @@ function echoStatusPokemons(array $pokemons) {
 }
 
 // Creating Pokemons
-$pikachu = new classes\Pikachu('Sparky');
-$charmeleon = new classes\Charmeleon('Blazy');
+$pikachu = new Pikachu('Sparky');
+$charmeleon = new Charmeleon('Blazy');
 
 // Prints the values of the pokemons before the fight.
 echo "<br>Status before the fight:<br><br>";
 echoStatusPokemons([$pikachu, $charmeleon]);
 
 // Pikachu attacks charmeleon with electric Ring.
-$pikachu->attackPokemon('Electric Ring', $charmeleon);
+$pikachu->attackPokemon(new ElectricRing(), $charmeleon);
+
+echo $pikachu->pokemonName . " attacks " . $charmeleon->pokemonName . ": <br>";
+
+// Prints the values of the attacked pokemon after the attack.
+echo "<br>";
+echoStatusPokemons([$charmeleon]);
 
 // Charmeleon attacks Pikachu with Flare.
-$charmeleon->attackPokemon('Flare', $pikachu);
+$charmeleon->attackPokemon(new Flare(), $pikachu);
 
-// Prints the values of the pokemons after the fight.
-echo "<br>Status after the fight:<br><br>";
-echoStatusPokemons([$pikachu, $charmeleon]);
+echo $charmeleon->pokemonName . " attacks " . $pikachu->pokemonName . ": <br>";
+
+// Prints the values of the attacked pokemon after the attack.
+echo "<br>";
+echoStatusPokemons([$pikachu]);

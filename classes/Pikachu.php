@@ -1,9 +1,5 @@
 <?php
 
-namespace classes;
-
-use classes\Pokemon;
-
 class Pikachu extends Pokemon
 {
     /**
@@ -29,10 +25,11 @@ class Pikachu extends Pokemon
                 'Fighting' => 20
             ],
             'attacks' => [
-                'Pika Punch' => 20,
-                'Electric Ring' => 50
+                new PikaPunch(),
+                new ElectricRing()
             ]
         ];
+
 
         // sends all the values of the pokemon to the parent in one array.
         parent::__construct($pokemonProperties);
