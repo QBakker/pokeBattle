@@ -80,7 +80,7 @@ class Pokemon
      * 
      * Uses the name of the attack and the targetPokemon to get the amount of damage that has to be done by the attacking pokemon.
      *
-     * @param  string $attack
+     * @param  object $attack
      * @param  object $targetPokemon
      *
      * @return void
@@ -105,13 +105,16 @@ class Pokemon
             $damage = $damage - $targetPokemon->resistances[$this->energyType];
         }
 
+        $targetPokemon->recieveDamage($damage);
+    }
+    
+    public function recieveDamage($damage) {
         // if the damage is below 0 the damage wouldn't be taken from targetPokemon.
         // -= is current - $damage.
-        if ($damage > 0) $targetPokemon->health -= $damage;
-
+        if ($damage > 0) $this->health -= $damage;
+        
         // checks trough the boolean from isAlive() if the health is less then 0.
         // when the health is less then 0 the health is set to 0.
-        if ( !$targetPokemon->isAlive() ) $targetPokemon->health = 0;
+        if ( !$this->isAlive() ) $this->health = 0;
     }
-
 }
